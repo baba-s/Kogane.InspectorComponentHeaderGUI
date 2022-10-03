@@ -69,6 +69,7 @@ namespace Kogane.Internal
                         var componentName = m_headerElementName
                                 .Remove( m_headerElementName.Length - 6, 6 )
                                 .Replace( " ", "" )
+                                .Replace( "(Script)", "" )
                             ;
 
                         foreach ( var gameObject in Selection.gameObjects )

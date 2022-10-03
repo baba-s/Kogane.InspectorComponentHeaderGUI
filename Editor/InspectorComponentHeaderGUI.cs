@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -48,8 +48,7 @@ namespace Kogane.Internal
             {
                 var headerElementName = headerElement.name;
 
-                if ( headerElementName == "TransformHeader" ||
-                     headerElementName == "Rect TransformHeader" )
+                if ( headerElementName is "TransformHeader" or "Rect TransformHeader" )
                 {
                     continue;
                 }
