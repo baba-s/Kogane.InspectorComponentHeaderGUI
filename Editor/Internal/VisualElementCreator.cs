@@ -24,10 +24,12 @@ namespace Kogane.Internal
             var removeComponentImage = imageCreator.CreateImage( ButtonType.REMOVE_COMPONENT, x => Undo.DestroyObjectImmediate( x ) );
             var moveUpImage          = imageCreator.CreateImage( ButtonType.MOVE_UP, x => ComponentUtility.MoveComponentUp( x ) );
             var moveDownImage        = imageCreator.CreateImage( ButtonType.MOVE_DOWN, x => ComponentUtility.MoveComponentDown( x ) );
+            var copyComponentImage   = imageCreator.CreateImage( ButtonType.COPY_COMPONENT, x => ComponentUtility.CopyComponent( x ) );
 
             container.Add( removeComponentImage );
             container.Add( moveUpImage );
             container.Add( moveDownImage );
+            container.Add( copyComponentImage );
 
             return container;
         }

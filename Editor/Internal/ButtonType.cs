@@ -5,5 +5,6 @@
         REMOVE_COMPONENT,
         MOVE_UP,
         MOVE_DOWN,
+        COPY_COMPONENT,
     }
 }
