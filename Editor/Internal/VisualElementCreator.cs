@@ -24,7 +24,7 @@ namespace Kogane.Internal
             var removeComponentImage = imageCreator.CreateImage( ButtonType.REMOVE_COMPONENT, x => Undo.DestroyObjectImmediate( x ) );
             var moveUpImage          = imageCreator.CreateImage( ButtonType.MOVE_UP, x => ComponentUtility.MoveComponentUp( x ) );
             var moveDownImage        = imageCreator.CreateImage( ButtonType.MOVE_DOWN, x => ComponentUtility.MoveComponentDown( x ) );
-            var copyComponentImage   = imageCreator.CreateImage( ButtonType.COPY_COMPONENT, x => ComponentUtility.CopyComponent( x ) );
+            var copyComponentImage   = imageCreator.CreateImage( ButtonType.COPY_COMPONENT, x => CopyComponent( x ) );
 
             container.Add( removeComponentImage );
             container.Add( moveUpImage );
@@ -32,6 +32,12 @@ namespace Kogane.Internal
             container.Add( copyComponentImage );
 
             return container;
+        }
+
+        private static void CopyComponent( Component component )
+        {
+            ComponentUtility.CopyComponent( component );
+            TooltipWindow.Open( "Copied!" );
         }
 
         private sealed class ImageCreator
