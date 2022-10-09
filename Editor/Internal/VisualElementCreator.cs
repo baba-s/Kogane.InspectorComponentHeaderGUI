@@ -37,6 +37,7 @@ namespace Kogane.Internal
         private static void CopyComponent( Component component )
         {
             ComponentUtility.CopyComponent( component );
+            Debug.Log( $"Copied! '{component.GetType().Name}'" );
             TooltipWindow.Open( "Copied!" );
         }
 
