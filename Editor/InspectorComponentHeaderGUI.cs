@@ -12,16 +12,34 @@ namespace Kogane.Internal
 
         static InspectorComponentHeaderGUI()
         {
-            Selection.selectionChanged      -= Refresh;
-            Selection.selectionChanged      += Refresh;
-            ObjectFactory.componentWasAdded -= OnComponentWasAdded;
-            ObjectFactory.componentWasAdded += OnComponentWasAdded;
-            Undo.undoRedoPerformed          -= Refresh;
-            Undo.undoRedoPerformed          += Refresh;
+            ObjectChangeEvents.changesPublished -= OnChangesPublished;
+            ObjectChangeEvents.changesPublished += OnChangesPublished;
+            Selection.selectionChanged          -= Refresh;
+            Selection.selectionChanged          += Refresh;
+            ObjectFactory.componentWasAdded     -= OnComponentWasAdded;
+            ObjectFactory.componentWasAdded     += OnComponentWasAdded;
+            Undo.undoRedoPerformed              -= Refresh;
+            Undo.undoRedoPerformed              += Refresh;
 
             // 2 フレーム遅らせないと Inspector に VisualElement を追加できない
             EditorApplication.delayCall += () =>
                 EditorApplication.delayCall += () => Refresh();
+        }
+
+        private static void OnChangesPublished( ref ObjectChangeEventStream stream )
+        {
+            for ( var i = 0; i < stream.length; i++ )
+            {
+                // 発生したイベントの種類を取得
+                var eventType = stream.GetEventType( i );
+
+                if ( eventType is
+                    ObjectChangeKind.ChangeGameObjectStructureHierarchy or
+                    ObjectChangeKind.ChangeGameObjectStructure )
+                {
+                    Refresh();
+                }
+            }
         }
 
         private static void OnComponentWasAdded( Component component )
