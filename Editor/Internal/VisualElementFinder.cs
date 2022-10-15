@@ -22,10 +22,11 @@ namespace Kogane.Internal
             return visualElementList
                     .Where
                     (
-                        x => !x.name.StartsWith( "Inspector Component Header GUI" ) &&
-                             ( ( x.name.EndsWith( "Header" ) && !x.name.EndsWith( ")Header" ) ) || x.name.EndsWith( "(Script)Header" ) ) &&
-                             // ゲームオブジェクトの名前が "Header" の場合も無視
-                             x.name != "HeaderHeader"
+                        x => x.name == "TextMeshPro - Text (UI)Header" ||
+                             ( !x.name.StartsWith( "Inspector Component Header GUI" ) &&
+                               ( ( x.name.EndsWith( "Header" ) && !x.name.EndsWith( ")Header" ) ) || x.name.EndsWith( "(Script)Header" ) ) &&
+                               // ゲームオブジェクトの名前が "Header" の場合も無視
+                               x.name != "HeaderHeader" )
                     )
                     .ToList()
                     .Skip( 1 )

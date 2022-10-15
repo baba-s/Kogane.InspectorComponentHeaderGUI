@@ -75,16 +75,16 @@ namespace Kogane.Internal
                 (
                     _ =>
                     {
-                        var componentName = m_headerElementName
+                        var componentName = m_headerElementName switch
+                        {
+                            "TextMeshPro - TextHeader"      => "TextMeshPro",
+                            "TextMeshPro - Text (UI)Header" => "TextMeshProUGUI",
+
+                            _ => m_headerElementName
                                 .Remove( m_headerElementName.Length - 6, 6 )
                                 .Replace( " ", "" )
                                 .Replace( "(Script)", "" )
-                            ;
-
-                        if ( m_headerElementName == "TextMeshPro - TextHeader" )
-                        {
-                            componentName = "TextMeshPro";
-                        }
+                        };
 
                         foreach ( var gameObject in Selection.gameObjects )
                         {
