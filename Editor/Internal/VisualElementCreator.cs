@@ -81,6 +81,11 @@ namespace Kogane.Internal
                                 .Replace( "(Script)", "" )
                             ;
 
+                        if ( m_headerElementName == "TextMeshPro - TextHeader" )
+                        {
+                            componentName = "TextMeshPro";
+                        }
+
                         foreach ( var gameObject in Selection.gameObjects )
                         {
                             var component = gameObject.GetComponent( componentName );
