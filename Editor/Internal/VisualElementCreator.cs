@@ -20,16 +20,18 @@ namespace Kogane.Internal
                 }
             };
 
-            var imageCreator         = new ImageCreator( headerElementName, onRefresh );
-            var removeComponentImage = imageCreator.CreateImage( ButtonType.REMOVE_COMPONENT, x => Undo.DestroyObjectImmediate( x ) );
-            var moveUpImage          = imageCreator.CreateImage( ButtonType.MOVE_UP, x => ComponentUtility.MoveComponentUp( x ) );
-            var moveDownImage        = imageCreator.CreateImage( ButtonType.MOVE_DOWN, x => ComponentUtility.MoveComponentDown( x ) );
-            var copyComponentImage   = imageCreator.CreateImage( ButtonType.COPY_COMPONENT, x => CopyComponent( x ) );
+            var imageCreator              = new ImageCreator( headerElementName, onRefresh );
+            var removeComponentImage      = imageCreator.CreateImage( ButtonType.REMOVE_COMPONENT, x => Undo.DestroyObjectImmediate( x ) );
+            var moveUpImage               = imageCreator.CreateImage( ButtonType.MOVE_UP, x => ComponentUtility.MoveComponentUp( x ) );
+            var moveDownImage             = imageCreator.CreateImage( ButtonType.MOVE_DOWN, x => ComponentUtility.MoveComponentDown( x ) );
+            var copyComponentImage        = imageCreator.CreateImage( ButtonType.COPY_COMPONENT, x => CopyComponent( x ) );
+            var pasteComponentValuesImage = imageCreator.CreateImage( ButtonType.PASTE_COMPONENT_VALUES, x => PasteComponentValues( x ) );
 
             container.Add( removeComponentImage );
             container.Add( moveUpImage );
             container.Add( moveDownImage );
             container.Add( copyComponentImage );
+            container.Add( pasteComponentValuesImage );
 
             return container;
         }
@@ -39,6 +41,13 @@ namespace Kogane.Internal
             ComponentUtility.CopyComponent( component );
             Debug.Log( $"Copied! '{component.GetType().Name}'" );
             TooltipWindow.Open( "Copied!" );
+        }
+
+        private static void PasteComponentValues( Component component )
+        {
+            ComponentUtility.PasteComponentValues( component );
+            Debug.Log( $"Pasted! '{component.GetType().Name}'" );
+            TooltipWindow.Open( "Pasted!" );
         }
 
         private sealed class ImageCreator

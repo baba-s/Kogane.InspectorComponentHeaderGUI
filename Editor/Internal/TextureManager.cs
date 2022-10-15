@@ -12,6 +12,7 @@ namespace Kogane.Internal
             { ButtonType.MOVE_UP, "76ede05262f8bc643aae0c54085298b1" },
             { ButtonType.MOVE_DOWN, "661ee6cb51d809c4abb4f09727ae9c26" },
             { ButtonType.COPY_COMPONENT, "0eac7ff23df01a741b7f715e6e2871b3" },
+            { ButtonType.PASTE_COMPONENT_VALUES, "c722d036a010ab94b8a0188f6339063b" },
         };
 
         private static readonly Dictionary<ButtonType, Texture2D> TEXTURE_DICTIONARY = new();
