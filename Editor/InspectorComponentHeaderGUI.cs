@@ -44,6 +44,7 @@ namespace Kogane.Internal
 
         private static void OnComponentWasAdded( Component component )
         {
+            Refresh();
             EditorApplication.delayCall += () => Refresh();
         }
 
