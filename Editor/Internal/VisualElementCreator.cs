@@ -30,8 +30,8 @@ namespace Kogane.Internal
             container.Add( removeComponentImage );
             container.Add( moveUpImage );
             container.Add( moveDownImage );
-            container.Add( copyComponentImage );
             container.Add( pasteComponentValuesImage );
+            container.Add( copyComponentImage );
 
             return container;
         }
